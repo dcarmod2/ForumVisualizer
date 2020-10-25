@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/application.css') }}"></link>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8"></meta>    
+        <style>
+            .node {stroke: #fff; stroke-width: 1.5px;}
+            .link {stroke: #999; stroke-opacity: .6;}
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    </head>
+<body>
+<div id="d3-example"></div>
+<script src="{{ url_for('static',filename='forumGraph.js') }}"></script>
+<div id="d3-example"></div>
+<input type = "text" id="searchinp"/>
+    <button id ="search">
+        Find Player
+    </button>
+<table>
+ <caption style="text-align:left">Last clicked node properties</caption>
+  <tr>
+    <th>Name</th>
+    <th>Importance</th>
+    <th>Most Liked Post</th>
+  </tr>
+  <tr>
+    <td width="250px" id="name-data">None</td>
+    <td width="125px" id="flow-data">None</td>
+    <td width="800px" id="best-post">None</td>
+  </tr>
+</table>
+</body>
+</html>
