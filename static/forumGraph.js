@@ -38,7 +38,9 @@ require(["d3"], function(d3) {
   // Specify the size of the canvas
   // containing the visualization (size of the
   // <div> element).
-  var width = 800, height = 600;
+  var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+  var height = 0.75 * (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);
 
   // We create a color scale.
   // NOTE: this line will cause problems in d3js v5
@@ -49,16 +51,28 @@ require(["d3"], function(d3) {
   // to the search box.
   var sim = d3.forceSimulation()
     .force("charge", d3.forceManyBody())
-    .force("center", d3.forceCenter(width / 1.9, height / 1.9));
+    .force("center", d3.forceCenter(width / 2, height / 2));
 
   // In the <div> element, we create a <svg> graphic
   // that will contain our interactive visualization.
   var svg = d3.select("#d3-example").select("svg")
   if (svg.empty()) {
-    svg = d3.select("#d3-example").append("svg")
+    svg = d3.select("#d3-example")
+          .append("svg")
           .attr("width", width)
           .attr("height", height);
   }
+
+  d3.select(window)
+  .on("resize", function() {
+    width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    height = 0.75 * (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);
+    console.log(width);
+    svg.attr("width", width);
+    svg.attr("height", height);
+    sim.force("center", d3.forceCenter(width / 2, height / 2));
+    sim.restart();
+  }); 
     
     //Define the button click listener
     var myBtn = document.getElementById("search");
