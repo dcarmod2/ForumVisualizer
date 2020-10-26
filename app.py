@@ -12,7 +12,7 @@ def index():
 
 @app.route('/forumGraph')
 def forumGraph():
-    with open('assets' + os.sep + 'to_plotNOMVP.json','r',encoding='utf8') as f:
+    with open('assets' + os.sep + 'to_plotPosts.json','r',encoding='utf8') as f:
         js = json.load(f)
     
     return jsonify(js)
